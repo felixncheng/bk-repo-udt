@@ -30,14 +30,23 @@ import de.marcphilipp.gradle.nexus.NexusPublishExtension
 plugins {
     id("de.marcphilipp.nexus-publish") version "0.4.0" apply false
     id("io.codearte.nexus-staging") version "0.22.0"
+    id("com.tencent.devops.release") version "0.0.8"
 }
 nexusStaging {
     username = System.getenv("SONATYPE_USERNAME")
     password = System.getenv("SONATYPE_PASSWORD")
 }
-subprojects {
+
+val ver = file("version.txt").readText().trim()
+
+release {
+    scmUrl.set("scm:git:git@github.com:felixncheng/bk-repo-udt.git")
+    incrementPolicy.set("PATCH")
+}
+
+allprojects {
     group = "com.tencent.bk.repo"
-    version = "1.0.1"
+    version = ver
     repositories {
         mavenCentral()
     }
