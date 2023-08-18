@@ -113,9 +113,8 @@ library {
                         "-finline-functions",
                         "-O3",
                         "-fno-strict-aliasing",
-                        "-fvisibility=hidden",
+                        "-fvisibility=hidden"
                     ),
-
                 )
             }
 
@@ -129,6 +128,11 @@ library {
                 "user32",
                 "-l",
                 "ws2_32",
+                "-static-libgcc",
+                "-static-libstdc++",
+                "-static",
+                "-l",
+                "pthread"
             )
         }
     }
